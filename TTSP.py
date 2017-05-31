@@ -116,7 +116,7 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
             
             elif event.type == pygame.KEYDOWN:
                 if terry in allSpritesList:
-                    if event.key == pygame.K_KP9:
+                    if event.key == pygame.K_F9:
                         bullet = GameClasses.Bullet("PythonGame/bullet.png", "SoundEffectsTTSP/Laser_Shoot7.ogg")
                         bullet.setSpeed(15)
                         bullet.rect.x = terry.rect.x + 25
