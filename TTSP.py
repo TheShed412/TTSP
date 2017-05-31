@@ -8,17 +8,19 @@ BLACK    = (   0,   0,   0)
 WHITE    = ( 255, 255, 255)
 GREEN    = (   0, 255,   0)
 RED      = ( 255,   0,   0)
+WIDTH    = 480
+HEIGHT   = 272
 
 def makeAsteroids(asteroidList, allSpritesList):
     """This function adds 75 ateroids to the star field"""
     blockWidth = 42
     blockHeight = 39
-    numberOfAsteroids = 76
+    numberOfAsteroids = 26
     for i in range(numberOfAsteroids):
         asteroid = GameClasses.Asteroid("PythonGame/TTSPasteroid.png")
             
-        asteroid.rect.x = random.randrange(1600 - blockWidth)
-        asteroid.rect.y = -(random.randrange(1000 - blockHeight))
+        asteroid.rect.x = random.randrange(WIDTH - blockWidth)
+        asteroid.rect.y = -(random.randrange(HEIGHT - blockHeight))
             
         asteroidList.add(asteroid)
         allSpritesList.add(asteroid)
@@ -222,6 +224,7 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
         
         if len(playerHit) > 0:
             terry.remove(allSpritesList)
+	    print("dead")
         
         
         
@@ -255,7 +258,7 @@ def main():
     
       
     # Set the width and height of the screen [width,height]
-    size = [1600, 1000]
+    size = [WIDTH, HEIGHT]
     screen = pygame.display.set_mode(size)
  
     pygame.display.set_caption("Terry the Terrified Spaceship Pilot")

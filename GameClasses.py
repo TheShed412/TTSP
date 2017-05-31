@@ -62,7 +62,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, playerImage):
         
         """Player constructor"""
-        super().__init__()
+        super(Player, self).__init__()
         
         self.image = pygame.image.load(playerImage).convert()
         self.image.set_colorkey(WHITE)
@@ -116,7 +116,7 @@ class Enemy(Player, pygame.sprite.Sprite):
 class Asteroid(pygame.sprite.Sprite):
     """Asteroid class"""
     def __init__(self, image):
-        super().__init__()
+        super(Asteroid, self).__init__()
         self.image = pygame.image.load(image).convert()
         self.image.set_colorkey(WHITE)
         self.rect = self.image.get_rect()
