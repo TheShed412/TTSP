@@ -226,6 +226,9 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
         
         if len(playerHit) > 0:
             terry.remove(allSpritesList)
+            print("You Scored: "+score)
+            pygame.quit()
+
         
         
         
