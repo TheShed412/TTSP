@@ -59,7 +59,7 @@ def theScoreText(score, screen):
     """end of theScoreTextFunction"""
 
 def background():
-    background_image = pygame.image.load("PythonGame/bigBackground.png").convert()
+    background_image = pygame.image.load("PythonGame/StarField.jpg").convert()
     return background_image
 
 
@@ -116,7 +116,7 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
             
             elif event.type == pygame.KEYDOWN:
                 if terry in allSpritesList:
-                    if event.key == pygame.K_l:
+                    if event.key == pygame.K_KP9:
                         bullet = GameClasses.Bullet("PythonGame/bullet.png", "SoundEffectsTTSP/Laser_Shoot7.ogg")
                         bullet.setSpeed(15)
                         bullet.rect.x = terry.rect.x + 25
@@ -128,24 +128,24 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
                         
             if joystickCount == 0:
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_a:
+                    if event.key == pygame.K_LEFT:
                         xSpeed -= vel
-                    if event.key == pygame.K_d:
+                    if event.key == pygame.K_RIGHT:
                         xSpeed += vel
-                    if event.key == pygame.K_w:
+                    if event.key == pygame.K_UP:
                         ySpeed -= vel
-                    if event.key == pygame.K_s:
+                    if event.key == pygame.K_DOWN:
                         ySpeed += vel
                         
                                                         
                 if event.type == pygame.KEYUP:
-                    if event.key == pygame.K_a:
+                    if event.key == pygame.K_LEFT:
                         xSpeed += vel
-                    if event.key == pygame.K_d:
+                    if event.key == pygame.K_RIGHT:
                         xSpeed -= vel
-                    if event.key == pygame.K_w:
+                    if event.key == pygame.K_UP:
                         ySpeed += vel
-                    if event.key == pygame.K_s:
+                    if event.key == pygame.K_DOWN:
                         ySpeed -= vel
                     
                 pos = pygame.mouse.get_pos()
