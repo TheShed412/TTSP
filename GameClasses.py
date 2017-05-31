@@ -127,12 +127,12 @@ class Asteroid(pygame.sprite.Sprite):
         """update function"""
         self.rect.y += 3
                 
-        if self.rect.y > 1000:
+        if self.rect.y > 300:
             self.reset()
         """End of Update function"""
                 
     def reset(self):
         """reset function"""
         self.rect.y = random.randrange(-100, -10)
-        self.rect.x = random.randrange(0, 1600 - 40)
+        self.rect.x = random.randrange(0, 500 - 40)
         """End of reset function"""    

@@ -72,7 +72,9 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
     
     bulletsFired = 0
     kills = 0
-    
+
+    made = 0
+
     score = 0
     
     xSpeed = 0
@@ -224,8 +226,9 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
         asteroidHitList = pygame.sprite.groupcollide(bulletList, asteroidList, True, True)
         playerHit = pygame.sprite.spritecollide(terry, asteroidList, False)
 
-        if score >= 15 and score%15 == 0:
+        if score >= 15 and score % 15 == 0 and made == 15:
             makeAsteroids(asteroidList, allSpritesList)
+            made = 0
         
         if len(playerHit) > 0:
             terry.remove(allSpritesList)
@@ -238,6 +241,7 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
         for asteroid in asteroidHitList:
             kills += 1
             score += 1
+            made += 1
             
         
         theScoreText(score, screen)
