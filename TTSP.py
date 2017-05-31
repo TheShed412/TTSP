@@ -11,11 +11,12 @@ RED      = ( 255,   0,   0)
 WIDTH    = 480
 HEIGHT   = 272
 
+
 def makeAsteroids(asteroidList, allSpritesList):
     """This function adds 75 ateroids to the star field"""
     blockWidth = 42
     blockHeight = 39
-    numberOfAsteroids = 26
+    numberOfAsteroids = 16
     for i in range(numberOfAsteroids):
         asteroid = GameClasses.Asteroid("PythonGame/TTSPasteroid.png")
             
@@ -25,7 +26,8 @@ def makeAsteroids(asteroidList, allSpritesList):
         asteroidList.add(asteroid)
         allSpritesList.add(asteroid)
     """End of makeAsteroids Function"""
-    
+
+
 def gameOver(allSpritesList, x, y):
 
     cont = pygame.sprite.Sprite()
@@ -53,7 +55,7 @@ def theScoreText(score, screen):
     """theScoreText function"""
     font = pygame.font.SysFont(None, 25)
     text = font.render("Score: " + str(score), True, WHITE)
-    screen.blit(text, (0,0))
+    screen.blit(text, (0, 0))
     """end of theScoreTextFunction"""
 
 def background():
@@ -186,12 +188,12 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
             yPos += ySpeed
             terry.playerUpdate(xPos, yPos)
                 
-        if yPos >= 950: 
-            yPos = 950
-        if yPos <= 750:
-            yPos = 750
-        if xPos >= 1550:
-            xPos = 1550
+        if yPos >= HEIGHT-50:
+            yPos = HEIGHT-50
+        if yPos <= 100:
+            yPos = 100
+        if xPos >= WIDTH-50:
+            xPos = WIDTH-50
         if xPos <= 0:
             xPos = 0
                 
@@ -224,7 +226,6 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
         
         if len(playerHit) > 0:
             terry.remove(allSpritesList)
-	    print("dead")
         
         
         
@@ -249,7 +250,7 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
         # Close the window and quit.
         # If you forget this line, the program will 'hang'
         # on exit if running from IDLE.
-    pygame.quit()    
+    pygame.quit()
 """End of gameLoop function"""
  
 def main():
@@ -267,9 +268,7 @@ def main():
     
     allSpritesList = pygame.sprite.Group()
     bulletList = pygame.sprite.Group()
-    
-    
-    
+
        
     joystickCount = pygame.joystick.get_count()
     if joystickCount == 0:
@@ -285,6 +284,8 @@ def main():
     makeAsteroids(asteroidList, allSpritesList)
     
     terry = GameClasses.Player("PythonGame/terryTheSpaceShip.png")
+    terry.rect.x = WIDTH/2
+    terry.rect.y = HEIGHT+30
     allSpritesList.add(terry)
     
     redical = pygame.image.load("PythonGame/TTSPRedical.png").convert()

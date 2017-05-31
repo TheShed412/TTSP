@@ -19,6 +19,7 @@ file locations for the Image of the bullet and
 for the sound effect.
 """
 
+
 class Bullet(pygame.sprite.Sprite):
     
     speed = 0
@@ -26,7 +27,7 @@ class Bullet(pygame.sprite.Sprite):
     """Bullet class"""
     def __init__(self, bulletImage, bulletSoundEffect):
         """Bullet constructor"""
-        super().__init__()
+        super(Bullet, self).__init__()
         self.image = pygame.image.load(bulletImage).convert()
         self.image.set_colorkey(WHITE)
         self.rect = self.image.get_rect()
