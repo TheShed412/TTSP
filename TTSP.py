@@ -2,6 +2,7 @@
 
 import pygame
 import random
+import os
 import math
 import GameClasses
  
@@ -13,6 +14,8 @@ RED      = ( 255,   0,   0)
 WIDTH    = 480
 HEIGHT   = 272
 
+pic_dir = os.path.dirname(__file__)
+
 
 def makeAsteroids(asteroidList, allSpritesList):
     """This function adds 75 ateroids to the star field"""
@@ -20,7 +23,8 @@ def makeAsteroids(asteroidList, allSpritesList):
     blockHeight = 39
     numberOfAsteroids = 16
     for i in range(numberOfAsteroids):
-        asteroid = GameClasses.Asteroid("Games/TTSP/PythonGame/TTSPasteroid.png")
+        image = os.path.join(pic_dir, "PythonGame/TTSPasteroid.png")
+        asteroid = GameClasses.Asteroid(image)
             
         asteroid.rect.x = random.randrange(WIDTH - blockWidth)
         asteroid.rect.y = -(random.randrange(HEIGHT - blockHeight))
@@ -61,7 +65,8 @@ def theScoreText(score, screen):
     """end of theScoreTextFunction"""
 
 def background():
-    background_image = pygame.image.load("Games/TTSP/PythonGame/StarField.jpg").convert()
+    image = os.path.join(pic_dir, "PythonGame/StarField.jpg")
+    background_image = pygame.image.load(image).convert()
     return background_image
 
 
@@ -109,7 +114,8 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
                 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if terry in allSpritesList:
-                    bullet = GameClasses.Bullet("PythonGame/bullet.png", "SoundEffectsTTSP/Laser_Shoot7.ogg")
+                    image = os.path.join(pic_dir, "PythonGame/bullet.png")
+                    bullet = GameClasses.Bullet(image, "SoundEffectsTTSP/Laser_Shoot7.ogg")
                     bullet.setSpeed(15)
                     bullet.rect.x = xPos + 25
                     bullet.rect.y = yPos
@@ -121,7 +127,8 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
             elif event.type == pygame.KEYDOWN:
                 if terry in allSpritesList:
                     if event.key == pygame.K_p:
-                        bullet = GameClasses.Bullet("Games/TTSP/PythonGame/bullet.png", "SoundEffectsTTSP/Laser_Shoot7.ogg")
+                        image = os.path.join(pic_dir, "PythonGame/bullet.png")
+                        bullet = GameClasses.Bullet(image, "SoundEffectsTTSP/Laser_Shoot7.ogg")
                         bullet.setSpeed(15)
                         bullet.rect.x = terry.rect.x + 25
                         bullet.rect.y = terry.rect.y
@@ -294,13 +301,15 @@ def main():
     
     asteroidList = pygame.sprite.Group()
     makeAsteroids(asteroidList, allSpritesList)
-    
-    terry = GameClasses.Player("Games/TTSP/PythonGame/terryTheSpaceShip.png")
+
+    terry_image = os.path.join(pic_dir, "PythonGame/terryTheSpaceShip.png")
+    terry = GameClasses.Player(terry_image)
     terry.rect.x = WIDTH/2
     terry.rect.y = HEIGHT+30
     allSpritesList.add(terry)
-    
-    redical = pygame.image.load("Games/TTSP/PythonGame/TTSPRedical.png").convert()
+
+    red_image = os.path.join(pic_dir, "PythonGame/TTSPRedical.png")
+    redical = pygame.image.load(red_image).convert()
     redical.set_colorkey(WHITE)
     #Loop until the user clicks the close button.
     
