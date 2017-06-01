@@ -137,6 +137,7 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
                         if event.key == pygame.K_y:
                             score = 0
                             kills = 0
+                            made = 0
                             reset(asteroidList, allSpritesList, asteroidHitList, terry)
                             done = False
                             game_over = False
