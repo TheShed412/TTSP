@@ -16,6 +16,13 @@ HEIGHT   = 272
 
 pic_dir = os.path.dirname(__file__)
 
+def reset(asteroidList, allSpritesList, asteroidHitList, terry):
+    #asteroidHitList.empty()
+    asteroidList.empty()
+    allSpritesList.empty()
+    allSpritesList.add(terry)
+    makeAsteroids(asteroidList, allSpritesList)
+
 
 def makeAsteroids(asteroidList, allSpritesList):
     """This function adds 75 ateroids to the star field"""
@@ -128,7 +135,11 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
                         bulletsFired += 1
                 elif game_over:
                         if event.key == pygame.K_y:
-                            done = True
+                            score = 0
+                            kills = 0
+                            reset(asteroidList, allSpritesList, asteroidHitList, terry)
+                            done = False
+                            game_over = False
                         elif event.key == pygame.K_n:
                             done = True
                         
