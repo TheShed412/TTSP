@@ -34,26 +34,16 @@ def makeAsteroids(asteroidList, allSpritesList):
     """End of makeAsteroids Function"""
 
 
-def gameOver(allSpritesList, x, y):
-
-    cont = pygame.sprite.Sprite()
-    cont.image = pygame.image.load("PythonGame/TTSPcontinue.png").convert()
-    cont.image.set_colorkey(WHITE)
-    cont.rect = cont.image.get_rect()
-    cont.rect.x = 575
-    cont.rect.y = 100
-    
-    if x > 575 and y > 100:
-        cont.add(allSpritesList)
+def gameOver(allSpritesList):
 
     gameOver = pygame.sprite.Sprite()
-    gameOver.image = pygame.image.load("PythonGame/TTSPgameover.png").convert()
+    image = os.path.join(pic_dir, "PythonGame/TTSPgameover.png")
+    gameOver.image = pygame.image.load(image).convert()
     gameOver.image.set_colorkey(WHITE)
     gameOver.rect = gameOver.image.get_rect() 
-    gameOver.rect.x = 575
-    gameOver.rect.y = 100
+    gameOver.rect.x = 80
+    gameOver.rect.y = 50
     gameOver.add(allSpritesList)
-    pygame.mouse.set_visible(True)
     
     
     
@@ -76,6 +66,7 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
     clock = pygame.time.Clock()
     pygame.mouse.set_visible(False)
     
+    game_over = False
     
     bulletsFired = 0
     kills = 0
@@ -135,7 +126,11 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
                         allSpritesList.add(bullet)
                         bulletList.add(bullet)
                         bulletsFired += 1
-                        
+                elif game_over:
+                        if event.key == pygame.K_y:
+                            done = True
+                        elif event.key == pygame.K_n:
+                            done = True
                         
             if joystickCount == 0:
                 if event.type == pygame.KEYDOWN:
@@ -239,10 +234,12 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
             makeAsteroids(asteroidList, allSpritesList)
             made = 0
         
-        if len(playerHit) > 0:
-            terry.remove(allSpritesList)
-            print "You Scored: %d" % (score)
-            done = True
+        if len(playerHit) > 0 and not game_over:
+            if not game_over:
+                terry.remove(allSpritesList)
+                gameOver(allSpritesList)
+                game_over = True
+            
 
         
         
