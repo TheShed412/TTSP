@@ -20,7 +20,7 @@ def makeAsteroids(asteroidList, allSpritesList):
     blockHeight = 39
     numberOfAsteroids = 16
     for i in range(numberOfAsteroids):
-        asteroid = GameClasses.Asteroid("PythonGame/TTSPasteroid.png")
+        asteroid = GameClasses.Asteroid("Games/TTSP/PythonGame/TTSPasteroid.png")
             
         asteroid.rect.x = random.randrange(WIDTH - blockWidth)
         asteroid.rect.y = -(random.randrange(HEIGHT - blockHeight))
@@ -61,7 +61,7 @@ def theScoreText(score, screen):
     """end of theScoreTextFunction"""
 
 def background():
-    background_image = pygame.image.load("PythonGame/StarField.jpg").convert()
+    background_image = pygame.image.load("Games/TTSP/PythonGame/StarField.jpg").convert()
     return background_image
 
 
@@ -121,7 +121,7 @@ def gameLoop(screen, joystickCount, terry, redical, background_image, allSprites
             elif event.type == pygame.KEYDOWN:
                 if terry in allSpritesList:
                     if event.key == pygame.K_p:
-                        bullet = GameClasses.Bullet("PythonGame/bullet.png", "SoundEffectsTTSP/Laser_Shoot7.ogg")
+                        bullet = GameClasses.Bullet("Games/TTSP/PythonGame/bullet.png", "SoundEffectsTTSP/Laser_Shoot7.ogg")
                         bullet.setSpeed(15)
                         bullet.rect.x = terry.rect.x + 25
                         bullet.rect.y = terry.rect.y
@@ -295,12 +295,12 @@ def main():
     asteroidList = pygame.sprite.Group()
     makeAsteroids(asteroidList, allSpritesList)
     
-    terry = GameClasses.Player("PythonGame/terryTheSpaceShip.png")
+    terry = GameClasses.Player("Games/TTSP/PythonGame/terryTheSpaceShip.png")
     terry.rect.x = WIDTH/2
     terry.rect.y = HEIGHT+30
     allSpritesList.add(terry)
     
-    redical = pygame.image.load("PythonGame/TTSPRedical.png").convert()
+    redical = pygame.image.load("Games/TTSP/PythonGame/TTSPRedical.png").convert()
     redical.set_colorkey(WHITE)
     #Loop until the user clicks the close button.
     
